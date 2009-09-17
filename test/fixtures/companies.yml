@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  drop_name: MyString
+  drop_pass: MyString
+
+two:
+  name: MyString
+  drop_name: MyString
+  drop_pass: MyString

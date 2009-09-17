@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  parent_support_action_id: 1
+  control: MyString
+  description: MyString
+  support_action_id: 1
+
+two:
+  parent_support_action_id: 1
+  control: MyString
+  description: MyString
+  support_action_id: 1

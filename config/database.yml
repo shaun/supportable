@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: supportable_dev
+  host: localhost
+  username: stlthadmin
+  password: stealth
+  min_messages: warning

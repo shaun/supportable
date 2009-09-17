@@ -1,0 +1,2 @@
+module CustomerVisitsHelper
+end

@@ -1,0 +1,26 @@
+unless defined? RegexLibrary
+  module RegexLibrary
+    ALPHANUMERIC        = Regexp.new("^[a-zA-Z0-9]+$")
+    ALPHANUMERIC_SPACES = Regexp.new("^[a-zA-Z0-9 ]+$")
+    NUMERIC             = Regexp.new("^[0-9]+$")
+    GREATER_THAN_ZERO   = Regexp.new("^[1-9]+[0-9]*$")
+    ID                  = Regexp.new("^[0-9]+$")
+    IP_ADDRESS          = Regexp.new("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
+    DOLLAR              = Regexp.new("\\$?[0-9]+\.[0-9]{2,}")
+    EMAIL               = Regexp.new('^([a-zA-Z0-9_\-\.\+]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$')
+    EMAIL_KEY           = Regexp.new("^[a-zA-Z0-9]*$")
+    URL                 = Regexp.new("^http[s]*:[/]+(.*)$")
+    URL_NAME            = Regexp.new("^[a-zA-Z0-9_]+$")
+    URL_NAME_LOWERCASE  = Regexp.new("^[a-z0-9_]+$")
+    NAME_NO_HTML        = Regexp.new("^[a-zA-Z0-9\ -\.\?:,']+$")
+    OPTIONAL_NAME_NO_HTML = Regexp.new("^[a-zA-Z0-9\ -\.\?:,']*$")
+    NAME_HTML           = Regexp.new("^[a-zA-Z0-9\ -\.\?:,'&#;]+$")
+    STATE               = Regexp.new("^[a-zA-Z]{2,}$")
+    PASSWORD            = Regexp.new("^.+$")
+    ZIP                 = Regexp.new("^[0-9]{5,}$")
+    YEAR                = Regexp.new("^[0-9]{4}$")
+    PHONE               = Regexp.new("^[0-9\.\(\)\ \-]{10,15}$")
+    DATE                = Regexp.new("^([0-9]{1,2})/([0-9]{1,2})/([0-9]{4,})$")
+    XML_SAFE            = Regexp.new("[^a-zA-Z0-9\ -\.,\?!:;'&_\$]")
+  end
+end

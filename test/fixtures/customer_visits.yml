@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  company_id: 1
+  status: MyString
+  waiting_at: 2009-09-17 10:15:02
+  help_arrived_at: 2009-09-17 10:15:02
+  solved_at: 2009-09-17 10:15:02
+  drop_name: MyString
+  drop_pass: MyString
+
+two:
+  company_id: 1
+  status: MyString
+  waiting_at: 2009-09-17 10:15:02
+  help_arrived_at: 2009-09-17 10:15:02
+  solved_at: 2009-09-17 10:15:02
+  drop_name: MyString
+  drop_pass: MyString
