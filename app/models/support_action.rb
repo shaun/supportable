@@ -18,16 +18,16 @@ class SupportAction < ActiveRecord::Base
   end
   
   DIV = "--------------------"
-  LINE_BREAK = "\n"
+  LINE_BREAK = "<br />"
   
   def act(customer_visit)
-    res = self.description
+    res = "#{LINE_BREAK}#{LINE_BREAK}#{self.description}"
     
     case self.action_type
     when Actions::TEXT
       # nothing else to do
     when Actions::OPTIONS
-      res += "#{DIV}#{LINE_BREAK}"
+      res += "#{LINE_BREAK}#{DIV}#{LINE_BREAK}"
       opts = self.support_options
       opts.each do |opt|
         res += opt.full_text
@@ -36,7 +36,6 @@ class SupportAction < ActiveRecord::Base
     when Actions::HELP
       customer_visit.need_help!
     end
-    
     return res       
   end
   

@@ -8,7 +8,7 @@ class SupportActionsController < ApplicationController
   def update_support_bot_behavior
     @root_action = @company.support_actions.root
     
-    return unless request.post?
+    render :layout => "employees" and return unless request.post?
     
     begin
       ActiveRecord::Base.transaction do 
@@ -43,6 +43,6 @@ class SupportActionsController < ApplicationController
       flash[:error] = e.message
     end
     
-    redirect_to update_support_bot_behavior(:company_name => @company.name) and return
+    redirect_to update_support_bot_behavior(@company.url_name) and return
   end
 end

@@ -47,7 +47,7 @@ end
 SUPPORT_BOT_JID = "supportbot"
 SERVER = "drop.io"
 
-Daemons.run_proc('support_bot', options) do      
+Daemons.run_proc("support_bot_#{customer_visit_id}", options) do      
   require RAILS_ROOT + '/config/environment'
     
   log "Started up support_bot in #{RAILS_ENV} for company_id #{company_id} and customer_visit_id #{customer_visit_id}"
@@ -115,8 +115,15 @@ Daemons.run_proc('support_bot', options) do
         end
      end
   }    
+  inited = false
+  muc.on_join { |time, nick|
+    if( nick.match("Guest") && !inited)
+      inited = true
+      log "this is probably the other guy so lets kick this thing off..."
+      muc.say(current_support_action.act(customer_visit))
+    end
+  }
   muc.join(Jabber::JID.new("#{drop_name}@conference.#{SERVER}/#{my_nick}"),chat_password)
-  muc.say(current_support_action.act(customer_visit))
   
   while Time.now < auto_kill_time && !kill_switch
     sleep(1000)

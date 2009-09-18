@@ -1,0 +1,21 @@
+<h1>Sign Your Company Up!</h1>
+
+<%= render :partial => "shared/message" %><br /><br />
+
+<form action="" method="post">
+	First Name*: <input type="text" name="manager[first_name]" value="<%= params[:manager] ? params[:manager][:first_name] : "" %>"><br />
+	Last Name*: <input type="text" name="manager[last_name]" value="<%= params[:manager] ? params[:manager][:last_name] : "" %>"><br />
+	E-mail*: <input type="text" name="manager[email]" value="<%= params[:manager] ? params[:manager][:email] : "" %>"><br />
+	Password*: <input type="password" name="manager[password]" ><br />
+	Password Confirmation*: <input type="password" name="password_confirmation"><br />
+	
+	<br />
+	
+	Company Name*: <input type="text" name="company[name]" value="<%= params[:company] ? params[:company][:name] : "" %>"><br />
+	Company Homepage: <input type="text" name="company[homepage]" value="<%= params[:company] ? params[:company][:homepage] : "" %>"><br />
+	
+	<br />
+	
+	<input type="submit" value="Sign Up Now!">
+</form>
+

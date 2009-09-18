@@ -1,0 +1,24 @@
+<h1>Create a Customer Service Rep for <%= @company.name %></h1>
+
+When you create a representative, he/she will be e-mailed with login information.<br /><br />
+
+<%= render :partial => "shared/message"%><br /><br />
+
+<form action="" method="post">
+	First Name*: <input type="text" name="rep[first_name]" value="<%= params[:rep] ? params[:rep][:first_name] : "" %>"><br />
+	Last Name*: <input type="text" name="rep[last_name]" value="<%= params[:rep] ? params[:rep][:last_name] : "" %>"><br />
+	E-mail*: <input type="text" name="rep[email]" value="<%= params[:rep] ? params[:rep][:email] : "" %>"><br />
+	<input type="submit" value="Add" />
+</form>
+
+<br /><br />
+
+<h4>All Reps For this Company</h4>
+<% if @reps.size == 0 %>None Yet
+<% else %>
+<% @reps.each do |rep| %>
+	Name: <%= rep.first_name %> <%= rep.last_name %> (<%= rep.email %>)<br />
+<% end %>
+<% end %>
+
+<br /><Br />

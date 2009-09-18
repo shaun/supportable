@@ -1,0 +1,16 @@
+<h1>Update Employee Account Info</h1>
+
+Leave passwords blank to leave as is<br /><br />
+
+<%= render :partial => "shared/message" %><br /><br />
+
+<form action="" method="post">
+	First Name*: <input type="text" name="employee[first_name]" value="<%= @employee.first_name %>"><br />
+	Last Name*: <input type="text" name="employee[last_name]" value="<%= @employee.last_name %>"><br />
+	E-mail*: <input type="text" name="employee[email]" value="<%= @employee.email %>"><br />
+	Password*: <input type="password" name="employee[password]"><br />
+	Password Confirmation*: <input type="password" name="password_confirmation"><br />
+	<input type="submit" value="Update" />
+</form>
+
+<br /><br />

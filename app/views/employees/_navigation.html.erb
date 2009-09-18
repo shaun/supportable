@@ -1,0 +1,10 @@
+<% if @employee.manager? %>
+<a href="<%= manager_index_url(@company.url_name) %>">Manager Overview</a><br />
+<a href="<%= update_company_info_url(@company.url_name) %>">Edit Company Info</a><br />
+<a href="<%= create_customer_service_rep_url(@company.url_name) %>">Create Customer Service Representative</a><br />
+<a href="<%= update_support_bot_behavior_url(@company.url_name) %>">Edit Support Actions</a><br />
+<% end %>
+
+<a href="<%= employee_chat_url(@company.url_name) %>">Employee Chat Room</a><br />
+<a href="<%= update_employee_info_url(@company.url_name) %>">Edit Account</a><br />
+<a href="<%= logout_url %>">Logout</a><br />

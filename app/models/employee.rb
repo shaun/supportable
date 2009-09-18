@@ -20,4 +20,8 @@ class Employee < ActiveRecord::Base
   def password=(pw) 
     self[:password] = Digest::SHA1.hexdigest(pw)
   end
+  
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 end

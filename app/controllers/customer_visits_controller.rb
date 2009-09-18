@@ -21,7 +21,6 @@ class CustomerVisitsController < ApplicationController
     render :layout => "homepage"
   end
   
-  # ajax call
   def init_customer_visit
     render :json => {:success => false, :message => "need post"} and return unless request.post?
     
@@ -33,7 +32,7 @@ class CustomerVisitsController < ApplicationController
     
     if drop
       drop_name = drop.name
-      drop_pass = drop.admin_token
+      drop_token = drop.admin_token
       chat_password = drop.chat_password
       
       drop_details = {
@@ -42,8 +41,8 @@ class CustomerVisitsController < ApplicationController
         :chat_password => chat_password
       }
       
-      cv = @company.customer_visits.create!(drop_details)
-      start_customer_session(@company,cv,drop_details)
+      cv = @company.customer_visits.create!(drop_details.merge(:status => CustomerVisit::Status::SELF_HELP))
+      start_customer_session(cv,drop_details)
       
       @company.dispatch_support_bot(cv)
             
@@ -56,12 +55,14 @@ class CustomerVisitsController < ApplicationController
   end
   
   def support
-    # use the instance vars to init a drop chat using realtime js library
+    @drop_name = @customer_visit.drop_name
+    @chat_password = @customer_visit.chat_password
+    render :layout => "customers"
   end
   
   def show
     @counts = @company.counts
-    # perhaps also show charts with time breakdowns eventually
+    render :layout => "employees"
   end
   
 end

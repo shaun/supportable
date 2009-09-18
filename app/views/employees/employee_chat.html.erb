@@ -1,0 +1,22 @@
+<% content_for :scripts do %>
+	<script type="text/javascript" charset="utf-8" src="http://drop.io/javascripts/streamer.js"></script>
+	
+	<script>
+	Event.observe(window,"load",function() {
+		SupportableChat.start("<%= @company.url_name %>","<%= @drop_name %>","<%= @chat_password %>",true);
+	})
+	</script>
+<% end %>
+
+<h1>Employee Chat Room</h1>
+
+Total Customers Using Support Bot: <span id="self_help_count"><%= @counts[:self_help] %></span><br />
+Total Customers Waiting For Help: <span id="need_help_count"><%= @counts[:need_help] %></span><br />
+Total Customers Being Helped: <span id="help_arrived_count"><%= @counts[:help_arrived] %></span><br />
+Total Customers Who Have Had Their Problems Solved: <span id="problem_solved_count"><%= @counts[:problem_solved] %></span><br /><br />
+
+<a href="<%= help_next_customer_url(@company.url_name) %>" target="_blank">Help The Next Waiting Customer</a><br /><br />
+
+<br /><br />
+
+<%= render :partial => "shared/supportable_chat" %>

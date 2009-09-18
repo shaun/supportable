@@ -1,0 +1,9 @@
+FOOTER<br />
+---------<br />
+
+<a href="<%= homepage_url %>">Home</a><br />
+<% if @company && @company.homepage %>
+<a href="<%= @company.homepage %>"><%= @company.name %>'s Homepage</a><br />
+<% end %>
+<a href="<%= signup_url %>">Sign Up</a><br />
+...and other links

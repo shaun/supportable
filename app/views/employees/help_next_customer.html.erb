@@ -1,0 +1,23 @@
+<% if !@customer_visit %>
+	Sorry, there are actually no customers to assist right now.
+<% else %>
+	
+	<% content_for :scripts do %>
+		<script type="text/javascript" charset="utf-8" src="http://drop.io/javascripts/streamer.js"></script>
+
+		<script>
+		Event.observe(window,"load",function() {
+			SupportableChat.start("<%= @company.url_name %>","<%= @drop_name %>","<%= @chat_password %>",true);
+		})
+		</script>
+	<% end %>
+
+	<h1>Customer Chat Room</h1>
+
+	<br /><br />
+
+	<%= render :partial => "shared/supportable_chat" %>
+	
+<% end %>
+
+<br /><br />
