@@ -15,7 +15,12 @@
 	<div class="title">Customer Chat Room</div>
 
 	<br /><br />
-
+	
+	<div class="helpNextButton">
+		<button onclick="top.location='<%= customer_visit_solved_url(:url_name => @company.url_name, :customer_visit_id => @customer_visit.id) %>'">This Problem Is Solved</button>
+	</div>
+	
+	<br /><br />
 	<%= render :partial => "shared/supportable_chat" %>
 	
 <% end %>

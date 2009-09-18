@@ -7,7 +7,7 @@ class EmployeesController < ApplicationController
   include SessionManager
   include HelperFunctions
   
-  before_filter :authorize_employee, :only => [:employee_chat, :update_employee_info, :help_next_customer]
+  before_filter :authorize_employee, :only => [:employee_chat, :update_employee_info, :help_next_customer, :customer_problem_solved]
   before_filter :authorize_manager, :only => [:manager_index, :create_customer_service_rep]
   before_filter :fetch_company, :only => [:login]
   
@@ -71,13 +71,27 @@ class EmployeesController < ApplicationController
     @counts = @company.counts
     @drop_name = @company.drop_name
     @chat_password = @company.chat_password
+    @drop_token = @company.drop_token
     render :layout => "employees"
   end
   
   def help_next_customer
     @customer_visit = @company.customer_visits.need_help.first
-    @customer_visit.help_arrived!(@employee) if @customer_visit
+    if @customer_visit
+      @customer_visit.help_arrived!(@employee) 
+      @drop_name = @customer_visit.drop_name
+      @chat_password = @customer_visit.chat_password
+      @drop_token = @customer_visit.drop_token
+    end
     render :layout => "employees"  
+  end
+  
+  def customer_problem_solved
+    @customer_visit = @company.customer_visits.find(params[:customer_visit_id])
+    if @customer_visit
+      @customer_visit.problem_solved!
+    end
+    redirect_to employee_chat_url(@company.url_name) and return
   end
   
   def create_customer_service_rep

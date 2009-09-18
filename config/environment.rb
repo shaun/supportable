@@ -78,4 +78,5 @@ end
 
 require 'dropio'
 include Dropio
-Dropio::Config.api_key = "783068a9dc16cf5cfe199f7ffa342782a4d5f594"
+DROPIO_API_KEY = "783068a9dc16cf5cfe199f7ffa342782a4d5f594"
+Dropio::Config.api_key = DROPIO_API_KEY

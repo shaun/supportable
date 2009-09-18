@@ -17,6 +17,27 @@
 	</div>
 </div>
 
+<br /><br />
+
+<div id="uploadForm"></div>
+<hr>
+<div class="title">Recently Uploaded Files</div>
+<div class="uploadedFiles" id="uploadedFiles"></div>
+
 <script>
 	Event.observe("message",'keypress', function(event) { if(event.keyCode == Event.KEY_RETURN) SupportableChat.sendMessage();});
+	var api = new DropioApiClient("<%= DROPIO_API_KEY %>");
+	
+	api.uploadFileForm({drop_name:"<%= @drop_name %>", token:"<%= @drop_token %>"},done_uploading, { 
+	        label:"Choose a File to Upload: ", 
+	        label_css:"uploadLabel", 
+	        submit_button_label:"Upload", 
+	        submit_button_css:"uploadButton", 
+	        append_to:"uploadForm" 
+	    }); 
+	    function done_uploading(response,success) { 
+			if( !success )
+	            alert("Error uploading file: " + response.message); 
+	    }
+	
 </script>

@@ -57,6 +57,7 @@ class CustomerVisitsController < ApplicationController
   def support
     @drop_name = @customer_visit.drop_name
     @chat_password = @customer_visit.chat_password
+    @drop_token = @customer_visit.drop_token
     render :layout => "default"
   end
   

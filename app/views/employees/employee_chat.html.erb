@@ -13,7 +13,7 @@
 <%= render :partial => "employees/counts" %>
 
 <div class="helpNextButton">
-	<button onclick="window.open('<%= help_next_customer_url(@company.url_name) %>')">Help The Next Waiting Customer!</button>
+	<button onclick="top.location = '<%= help_next_customer_url(@company.url_name) %>' ">Help The Next Waiting Customer!</button>
 </div>
 
 

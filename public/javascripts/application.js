@@ -8,12 +8,17 @@ var SupportableChat = {
 		DropioStreamer.observe(DropioStreamer.USER_JOINED, SupportableChat.employeeJoined.bind(SupportableChat));
 		DropioStreamer.observe(DropioStreamer.USER_LEFT, SupportableChat.employeeLeft.bind(SupportableChat));
 		DropioStreamer.observe(DropioStreamer.RECEIVED_MESSAGE, SupportableChat.receivedMessage.bind(SupportableChat));
+		DropioStreamer.observe(DropioStreamer.ASSET_ADDED, SupportableChat.assetAdded.bind(SupportableChat));
 		
 		// start the stream
 		DropioStreamer.start(drop_name,chat_password);
 		
 		if( for_employees )
 			setTimeout(function() { SupportableChat.pollCounts() }, 5000);
+	},
+	
+	assetAdded: function(data) {
+       $("uploadedFiles").insert({top:"<a target='_blank' href='"+data.hidden_url+"'>"+data.name+"</a><br />"})	
 	},
 	
 	iJoined: function(data) {

@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.logout ':url_name/employees/logout', :controller => "employees", :action => "logout"
   map.help_next_customer ':url_name/employees/assist', :controller => "employees", :action => "help_next_customer"
   map.employee_chat ':url_name/employees', :controller => "employees", :action => "employee_chat"
+  map.customer_visit_solved ':url_name/employees/:customer_visit_id/solved', :controller => "employees", :action => "customer_problem_solved"
+  
   map.update_employee_info ':url_name/employees/update', :controller => "employees", :action => "update_employee_info"
   map.manager_index ':url_name/manager', :controller => "employees", :action => "manager_index"
   map.create_customer_service_rep ':url_name/manager/employees', :controller => "employees", :action => "create_customer_service_rep"

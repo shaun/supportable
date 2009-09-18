@@ -29,7 +29,7 @@ class SupportActionsController < ApplicationController
   def create_support_action
     redirect_to update_support_bot_behavior_url(@company.url_name) and return unless request.post?
     
-    root_action = @company.support_actions.root
+    root_action = @company.support_actions.root.first
     
     sa = @company.support_actions.new(params[:support_action].merge(:root => root_action.nil? )) 
    
