@@ -6,43 +6,60 @@ class SupportActionsController < ApplicationController
   before_filter :authorize_manager
   
   def update_support_bot_behavior
-    @root_action = @company.support_actions.root
+    @support_actions = @company.support_actions
     
-    render :layout => "employees" and return unless request.post?
+    render :layout => "employees"
+  end
+  
+  def update_support_bot_config
+    redirect_to update_support_bot_behavior_url(@company.url_name) and return unless request.post?
     
-    begin
-      ActiveRecord::Base.transaction do 
-        @company.support_actions.destroy_all
-        
-        support_actions = {}
-        
-        # create all support actions
-        params[:support_action].each do |sah|
-          sa = @company.support_actions.create!(sah)
-          sa.company = @company
-          sa.root = true if sah[:root].to_s == "true"
-          support_actions[sah[:dom_id]] = sah
-        end
-        
-        # now create the support options
-        params[:support_action].each do |sah|
-          next if sah[:status] != SupportAction::Actions::OPTIONS || !sah[:support_option]
-          psa = support_actions[sah[:dom_id]]
-          sah[:support_option].each do |soh|
-            tsa = support_actions[soh[:target_action_dom_id]]
-            SupportOption.create!(:parent_support_action_id => psa.id, 
-                                  :control => soh[:control], 
-                                  :description => soh[:description],
-                                  :target_support_action_id => tsa.id )
-          end
-        end
-      end
-      
-      flash[:message] = "Successfully updated support behavior"
-    rescue Exception => e
-      flash[:error] = e.message
+    @company.support_bot_nick = params[:support_bot_nick]
+    @company.support_bot_error_response = params[:support_bot_error_response]
+    
+    if @company.save
+      flash[:message] = "Support Bot name and error response updated."
+    else
+      flash[:error] = "There was a problem updating the support bot's configuration."
     end
     
-    redirect_to update_support_bot_behavior(@company.url_name) and return
+    redirect_to update_support_bot_behavior_url(@company.url_name) and return
+  end
+  
+  def create_support_action
+    redirect_to update_support_bot_behavior_url(@company.url_name) and return unless request.post?
+    
+    root_action = @company.support_actions.root
+    
+    sa = @company.support_actions.new(params[:support_action].merge(:root => root_action.nil? )) 
+   
+    if sa.save
+      flash[:message] = "Support Action Created"
+    else
+      flash[:error] = "There was a problem saving that support action: #{sa.errors.full_messages.join(",")}"
+    end
+    
+    redirect_to update_support_bot_behavior_url(@company.url_name) and return
+  end
+  
+  def create_support_option
+    redirect_to update_support_bot_behavior_url(@company.url_name) and return unless request.post?
+    
+    parent_support_action = @company.support_actions.find(params[:support_option][:parent_support_action_id])
+    target_support_action = @company.support_actions.find(params[:support_option][:target_support_action_id])
+    
+    if !parent_support_action || !target_support_action
+      flash[:error] = "Invalid support action IDs"
+    else
+      so = parent_support_action.support_options.new(params[:support_option]) 
+    
+      if so.save
+        flash[:message] = "Support Option Created"
+      else
+        flash[:error] = "There was a problem saving that support option: #{so.errors.full_messages.join(",")}"
+      end
+    end
+    
+    redirect_to update_support_bot_behavior_url(@company.url_name) and return
   end
 end

@@ -11,6 +11,7 @@ class Company < ActiveRecord::Base
   has_one  :manager
   has_many :support_actions, :dependent => :destroy
   has_many :customer_visits, :dependent => :destroy
+  has_many :support_options, :through => :support_actions
   
   DEFAULT_DROP_OPTIONS = {
     :guests_can_add => false,
@@ -49,6 +50,14 @@ class Company < ActiveRecord::Base
       :help_arrived => 0,
       :problem_solved => 0
     }
+  end
+  
+  def support_bot_nick
+    !self[:support_bot_nick].blank? ? self[:support_bot_nick] : SupportAction::DEFAULT_SUPPORT_BOT_NICK
+  end
+  
+  def support_bot_error_response
+    !self[:support_bot_error_response].blank? ? self[:support_bot_error_response] : SupportAction::DEFAULT_SUPPORT_BOT_ERROR_RESPONSE
   end
   
   def dispatch_support_bot(customer_visit)

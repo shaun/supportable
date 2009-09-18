@@ -61,8 +61,8 @@ Daemons.run_proc("support_bot_#{customer_visit_id}", options) do
   drop_name = customer_visit.drop_name
   chat_password = customer_visit.chat_password
   
-  my_nick = company.support_bot_nick || SupportAction::DEFAULT_SUPPORT_BOT_NICK
-  error_response = company.support_bot_error_response || SupportAction::DEFAULT_SUPPORT_BOT_ERROR_RESPONSE
+  my_nick = company.support_bot_nick 
+  error_response = company.support_bot_error_response
   
   current_support_action = company.support_actions.root.first
   current_support_options = current_support_action.support_options

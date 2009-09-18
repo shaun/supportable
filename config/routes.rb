@@ -2,6 +2,9 @@ ActionController::Routing::Routes.draw do |map|
   
   # support actions controller
   map.update_support_bot_behavior ':url_name/manager/update_support_bot', :controller => "support_actions", :action => "update_support_bot_behavior"
+  map.update_support_bot_config ':url_name/manager/update_support_bot_config', :controller => "support_actions", :action => "update_support_bot_config"
+  map.create_support_action ':url_name/manager/create_support_action', :controller => "support_actions", :action => "create_support_action"
+  map.create_support_option ':url_name/manager/create_support_option', :controller => "support_actions", :action => "create_support_option"
   
   # employees controller
   map.signup 'signup', :controller => "employees", :action => "signup"
