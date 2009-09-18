@@ -1,21 +1,17 @@
-<h1>Sign Your Company Up!</h1>
+<div class="title">Sign Up For Supportable</div>
 
-<%= render :partial => "shared/message" %><br /><br />
+<%= render :partial => "shared/message" %>
 
-<form action="" method="post">
-	First Name*: <input type="text" name="manager[first_name]" value="<%= params[:manager] ? params[:manager][:first_name] : "" %>"><br />
-	Last Name*: <input type="text" name="manager[last_name]" value="<%= params[:manager] ? params[:manager][:last_name] : "" %>"><br />
-	E-mail*: <input type="text" name="manager[email]" value="<%= params[:manager] ? params[:manager][:email] : "" %>"><br />
-	Password*: <input type="password" name="manager[password]" ><br />
-	Password Confirmation*: <input type="password" name="password_confirmation"><br />
+<div class="formWrapper" style="height: 275px;">
+	<form action="" method="post">
+		<div class="label">First Name</div><div class="field"><input type="text" name="manager[first_name]" value="<%= params[:manager] ? params[:manager][:first_name] : "" %>"></div>
+		<div class="label">Last Name</div><div class="field"><input type="text" name="manager[last_name]" value="<%= params[:manager] ? params[:manager][:last_name] : "" %>"></div>
+		<div class="label">E-mail</div><div class="field"><input type="text" name="manager[email]" value="<%= params[:manager] ? params[:manager][:email] : "" %>"></div>
+		<div class="label">Password</div><div class="field"><input type="password" name="manager[password]" ></div>
+		<div class="label">Password Confirmation</div><div class="field"><input type="password" name="password_confirmation"></div>
+		<div class="label">Company Name</div><div class="field"><input type="text" name="company[name]" value="<%= params[:company] ? params[:company][:name] : "" %>"></div>
+		<div class="label">Company Homepage</div><div class="field"><input type="text" name="company[homepage]" value="<%= params[:company] ? params[:company][:homepage] : "" %>"></div>
 	
-	<br />
-	
-	Company Name*: <input type="text" name="company[name]" value="<%= params[:company] ? params[:company][:name] : "" %>"><br />
-	Company Homepage: <input type="text" name="company[homepage]" value="<%= params[:company] ? params[:company][:homepage] : "" %>"><br />
-	
-	<br />
-	
-	<input type="submit" value="Sign Up Now!">
-</form>
-
+		<div class="submitWrapper"><input type="submit" value="Sign Up Now!"></div>
+	</form>
+</div>

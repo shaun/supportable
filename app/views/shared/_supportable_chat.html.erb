@@ -1,18 +1,22 @@
-<div style="width: 100%; height: 500px; border: 1px solid black">
-	<div id="nickList" style="float: left; width: 20%; height: 400px; border: 1px solid black">
+<div class="chatWrapper">
+	<div id="nickList">
 
 	</div>
 
-	<div id="chatWindow" style="float: left; width: 70%; height: 400px; border: 1px solid black">
+	<div id="chatWindow">
 
 	</div>
 
-	<div style="float:left; width: 100%; height: 100px; border: 1px solid black">
-		<div style="float:left">
-			<input id="message" type="text" style="width: 90%">
+	<div class="messageWrapper">
+		<div class="messageInput">
+			<input id="message" type="text">
 		</div>
-		<div style="float:left ">
+		<div class="sendMessage">
 			<input type="submit" value="Send" onclick="SupportableChat.sendMessage();">
 		</div>
 	</div>
 </div>
+
+<script>
+	Event.observe("message",'keypress', function(event) { if(event.keyCode == Event.KEY_RETURN) SupportableChat.sendMessage();});
+</script>

@@ -19,6 +19,8 @@ class Company < ActiveRecord::Base
     :expiration_length => "1_YEAR_FROM_LAST_VIEW"
   }
   
+  DEFAULT_LANDING_PAGE_TEXT = "Welcome to Supportable! Here you will be able to get quick, realtime customer support. Click the button below to begin speaking with our intelligent customer service bot!"
+  
   def name=(str)
     self[:name] = str
     self[:url_name] = str.gsub(/[^A-Za-z0-9]/,"")
@@ -50,6 +52,10 @@ class Company < ActiveRecord::Base
       :help_arrived => 0,
       :problem_solved => 0
     }
+  end
+  
+  def landing_page_welcome_text
+    !self[:landing_page_welcome_text].blank? ? self[:landing_page_welcome_text] : Company::DEFAULT_LANDING_PAGE_TEXT
   end
   
   def support_bot_nick

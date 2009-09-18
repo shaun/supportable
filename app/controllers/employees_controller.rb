@@ -101,7 +101,7 @@ class EmployeesController < ApplicationController
   def update_employee_info
     render :layout => "employees" and return unless request.post?
     
-    params[:employee].delete_if { |p| p.blank? }
+    params[:employee].delete_if { |p,v| p.blank? }
     params[:employee].delete(:password) if params[:employee][:password].blank?
     params.delete(:password_confirmation) if params[:password_confirmation].blank?
       

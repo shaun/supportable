@@ -18,7 +18,7 @@ class CustomerVisitsController < ApplicationController
   }
   
   def index 
-    render :layout => "homepage"
+    render :layout => "default"
   end
   
   def init_customer_visit
@@ -57,7 +57,7 @@ class CustomerVisitsController < ApplicationController
   def support
     @drop_name = @customer_visit.drop_name
     @chat_password = @customer_visit.chat_password
-    render :layout => "customers"
+    render :layout => "default"
   end
   
   def show

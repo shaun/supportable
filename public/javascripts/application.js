@@ -10,7 +10,7 @@ var SupportableChat = {
 		DropioStreamer.observe(DropioStreamer.RECEIVED_MESSAGE, SupportableChat.receivedMessage.bind(SupportableChat));
 		
 		// start the stream
-		DropioStreamer.start(drop_name,chat_password,"http://localhost:3000/streamer_xdr.html");
+		DropioStreamer.start(drop_name,chat_password);
 		
 		if( for_employees )
 			setTimeout(function() { SupportableChat.pollCounts() }, 5000);
@@ -65,11 +65,11 @@ var SupportableChat = {
 	},
 	
 	displayMessage: function(nick,str) {
-		$("chatWindow").insert({bottom:"<div style='float:left; width: 100%; border: 1px solid black'>" + nick + ":" + str + "</div>"});	
+		$("chatWindow").insert({bottom:"<div>" + nick + ": " + str + "</div>"});	
 	},
 	
 	displayNick: function(nick) {
-		$("nickList").insert("<span id='" + nick + "'>" + nick + "</span><br />");	
+		$("nickList").insert("<div id='" + nick + "'>" + nick + "</div>");	
 	}
 }
 

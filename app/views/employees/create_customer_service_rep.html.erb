@@ -1,24 +1,28 @@
-<h1>Create a Customer Service Rep for <%= @company.name %></h1>
+<div class="title">Create a New Customer Service Rep<br /><%= @company.name %></div>
 
-When you create a representative, he/she will be e-mailed with login information.<br /><br />
+<div class="description">
+	When you create a new representative, he or she will be e-mailed with login information and instructions.
+</div>
 
-<%= render :partial => "shared/message"%><br /><br />
+<%= render :partial => "shared/message"%>
 
-<form action="" method="post">
-	First Name*: <input type="text" name="rep[first_name]" value="<%= params[:rep] ? params[:rep][:first_name] : "" %>"><br />
-	Last Name*: <input type="text" name="rep[last_name]" value="<%= params[:rep] ? params[:rep][:last_name] : "" %>"><br />
-	E-mail*: <input type="text" name="rep[email]" value="<%= params[:rep] ? params[:rep][:email] : "" %>"><br />
-	<input type="submit" value="Add" />
-</form>
+<div class="formWrapper" style="height: 275px;">
+	<form action="" method="post">
+		<div class="label">First Name</div><div class="field"><input type="text" name="rep[first_name]" value="<%= params[:rep] ? params[:rep][:first_name] : "" %>"></div>
+		<div class="label">Last Name</div><div class="field"><input type="text" name="rep[last_name]" value="<%= params[:rep] ? params[:rep][:last_name] : "" %>"></div>
+		<div class="label">E-mail</div><div class="field"><input type="text" name="rep[email]" value="<%= params[:rep] ? params[:rep][:email] : "" %>"></div>
+		<div class="submitWrapper"><input type="submit" value="Add" /></div>
+	</form>
+</div>
 
-<br /><br />
+<div class="title">All Customer Representatives</div>
 
-<h4>All Reps For this Company</h4>
-<% if @reps.size == 0 %>None Yet
+<% if @reps.size == 0 %>
+	<div style="width: 100%; text-align: center"><i>None Created Yet</i>
 <% else %>
-<% @reps.each do |rep| %>
-	Name: <%= rep.first_name %> <%= rep.last_name %> (<%= rep.email %>)<br />
+	<ul>
+	<% @reps.each do |rep| %>
+		<li><%= rep.first_name %> <%= rep.last_name %> (<%= rep.email %>)</li>
+	<% end %>
+	</ul>
 <% end %>
-<% end %>
-
-<br /><Br />

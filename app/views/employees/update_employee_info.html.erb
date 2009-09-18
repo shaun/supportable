@@ -1,16 +1,19 @@
-<h1>Update Employee Account Info</h1>
+<div class="title">Update Employee Account Info</div>
 
-Leave passwords blank to leave as is<br /><br />
+<div class="description">
+Leave passwords blank to keep them unchanged.
+</div>
 
-<%= render :partial => "shared/message" %><br /><br />
+<%= render :partial => "shared/message" %>
 
-<form action="" method="post">
-	First Name*: <input type="text" name="employee[first_name]" value="<%= @employee.first_name %>"><br />
-	Last Name*: <input type="text" name="employee[last_name]" value="<%= @employee.last_name %>"><br />
-	E-mail*: <input type="text" name="employee[email]" value="<%= @employee.email %>"><br />
-	Password*: <input type="password" name="employee[password]"><br />
-	Password Confirmation*: <input type="password" name="password_confirmation"><br />
-	<input type="submit" value="Update" />
-</form>
+<div class="formWrapper" style="height: 275px;">
+	<form action="" method="post">
+		<div class="label">First Name</div><div class="field"><input type="text" name="employee[first_name]" value="<%= @employee.first_name %>"></div>
+		<div class="label">Last Name</div><div class="field"><input type="text" name="employee[last_name]" value="<%= @employee.last_name %>"></div>
+		<div class="label">E-mail</div><div class="field"><input type="text" name="employee[email]" value="<%= @employee.email %>"></div>
+		<div class="label">Password</div><div class="field"><input type="password" name="employee[password]"></div>
+		<div class="label">Password Confirmation</div><div class="field"><input type="password" name="password_confirmation"></div>
+		<div class="submitWrapper"><input type="submit" value="Update" /></div>
+	</form>
+</div>
 
-<br /><br />

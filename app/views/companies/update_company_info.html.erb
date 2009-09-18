@@ -1,12 +1,12 @@
-<h1>Update Company Info</h1>
+<div class="title">Update Company Info</div>
 
-<%= render :partial => "shared/message" %><br /><br />
+<%= render :partial => "shared/message" %>
 
-<form action="" method="post">
-	Name: <input type="text" name="company[name]" value="<%= @company.name %>" /><br />
-	Landing Page Welcome Text: <textarea name="company[landing_page_welcome_text]"><%= @company.landing_page_welcome_text %></textarea><br />
-	Homepage URL: <input type="text" name="company[homepage]" value="<%= @company.homepage %>" /><br />
-	<input type="submit" value="Update" />
-</form>
-
-<br /><br />
+<div class="formWrapper" style="height: 175px;">
+	<form action="" method="post">
+		<div class="label">Name</div><div class="field"><input type="text" name="company[name]" value="<%= @company.name %>" /></div>
+		<div class="label">Landing Page Welcome Text</div><div class="field"><textarea name="company[landing_page_welcome_text]"><%= @company.landing_page_welcome_text %></textarea></div>
+		<div class="label">Homepage URL</div><div class="field"><input type="text" name="company[homepage]" value="<%= @company.homepage %>" /></div>
+		<div class="submitWrapper"><input type="submit" value="Update" /></div>
+	</form>
+</div>

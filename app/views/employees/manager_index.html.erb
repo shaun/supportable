@@ -1,12 +1,14 @@
-<h1>Manager Overview Page</h1>
-Welcome <%= @manager.first_name %>. From here you can manager all aspects of your company, <%= @company.name %>.<br /><br />
-<% if @manager.created_at > Time.now - 1.minute %>
-	To get started, you should <a href="<%= update_support_bot_behavior_url(@company) %>">Create Some Support Actions</a>
-<% end %>
+<div class="title">Manager Overview Page<br /><%= @company.name %></div>
 
-Total Customers Using Support Bot: <%= @counts[:self_help] %><br />
-Total Customers Waiting For Help: <%= @counts[:need_help] %><br />
-Total Customers Being Helped: <%= @counts[:help_arrived] %><br />
-Total Customers Who Have Had Their Problems Solved: <%= @counts[:problem_solved] %><br />
+<div class="description">
+	Welcome <%= @manager.first_name %>. From here you can manager all aspects of your company.
+	<% if @manager.created_at > Time.now - 1.day %>
+		To get started, you should: <br />
+			1) <a href="<%= create_customer_service_rep_url(@company.url_name) %>">Create some employee accounts</a><br />
+			2) <a href="<%= update_support_bot_behavior_url(@company.url_name) %>">Configure your automated support bot</a>
+	<% end %>
+	<br /><br />
+	When everything is all set, you should have your employees go <a href="<%= employee_chat_url(@company.url_name) %>">here</a>, and your customers go <a href="<%= company_landing_page_url(@company.url_name) %>">here</a>.
+</div>
 
-<br /><br />
+<%= render :partial => "employees/counts" %>

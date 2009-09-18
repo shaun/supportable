@@ -15,7 +15,7 @@ config.action_controller.perform_caching             = false
 
 
 config.action_mailer.raise_delivery_errors = true
-ActionMailer::Base.delivery_method = :activerecord
+ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :address  => "localhost",
   :port  => 25,

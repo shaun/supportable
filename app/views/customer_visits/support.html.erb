@@ -8,12 +8,12 @@
 	</script>
 <% end %>
 
-<h1>Support Chat For <%= @company.name %></h1>
+<div class="title">Support Chat For <%= @company.name %></div>
 
+<div class="description">
 You will first speak with an automated support robot. It should be able to answer most of your questions. If you are still having trouble, eventually it will give you the option to speak with a customer service representative, who will join this chat room to answer your questions. At any point while speaking with the support bot, you may type "<%= SupportAction::START_OVER_COMMAND %>" to start from the beginning. You can also feel free to upload any screenshots/documents/other files that you feel may assist our customer service representatives in helping you.
+</div>
 
 <br /><br />
 
 <%= render :partial => "shared/supportable_chat" %>
-
-<br /><br />

@@ -1,11 +1,7 @@
-<h1>Welcome To <%= @company.name %>'s Landing Page</h1>
+<div class="title">Customer Support<br /><%= @company.name %></div>
 
-Custom Welcome Text: <br />
-<i><%= @company.landing_page_welcome_text %></i>
-<br /><br />
+<div class="description">
+	<i><%= @company.landing_page_welcome_text %></i>
+</div>
 
-Company Homepage: <%= @company.homepage %>
-
-<Br /><br />
-
-<button onclick="Customer.init_support('<%= @company.url_name %>')">Get Customer Support Now!</button><br /><br />
+<div class="getSupport" onclick="Customer.init_support('<%= @company.url_name %>')"></div>

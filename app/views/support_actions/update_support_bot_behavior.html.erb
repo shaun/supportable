@@ -1,38 +1,41 @@
-<h1>Change How Your Support Bot Behaves</h1>
+<div class="title">Change How Your Support Bot Behaves</div>
 
-Create some actions and general configurations for your bot below.<br /><br />
+<div class="description">
+Your Support Bot is the automated customer service representative who will first greet your customers and try to answer their questions. You can configure general things about it such as its nickname in the chat room, and also what it says and what commands it recognizes from the user.
+</div>
 
 <%= render :partial => "shared/message" %>
 
-<h4>Update General Config Values</h4>
-<form action="<%= update_support_bot_config_url(@company.url_name)%>" method="post">
-	Chat Nickname: <input type="text" name="support_bot_nick" value="<%= @company.support_bot_nick %>"><br />
-	Error Response: <input type="text" name="support_bot_error_response" value="<%= @company.support_bot_error_response %>"><br />
-	<input type="submit" value="Update!" />
-</form>
+<div class="title" style="margin-bottom: 5px">General Configuration</div>
+<div class="formWrapper" style="height: 120px;">
+	<form action="<%= update_support_bot_config_url(@company.url_name)%>" method="post">
+		<div class="label">Chat Nickname</div><div class="field"><input type="text" name="support_bot_nick" value="<%= @company.support_bot_nick %>"></div>
+		<div class="label">Error Response</div><div class="field"><input type="text" name="support_bot_error_response" value="<%= @company.support_bot_error_response %>"></div>
+		<div class="submitWrapper"><input type="submit" value="Update!" /></div>
+	</form>
+</div>
 
-<br />
+<div class="title" style="margin-bottom: 5px">Create A Support Action</div>
+<div class="formWrapper" style="height: 120px;">
+	<form action="<%= create_support_action_url(@company.url_name)%>" method="post">
+		<div class="label">Description</div><div class="field"><input type="text" name="support_action[description]" /></div>
+		<div class="label">Action Type</div><div class="field"><input type="radio" name="support_action[action_type]" value="<%= SupportAction::Actions::TEXT %>"> Text 
+		<input type="radio" name="support_action[action_type]" value="<%= SupportAction::Actions::OPTIONS %>"> Options 
+		<input type="radio" name="support_action[action_type]" value="<%= SupportAction::Actions::HELP %>"> Help</div>
+		<div class="submitWrapper"><input type="submit" value="Create!" /></div>
+	</form>
+</div>
 
-<h4>Create A Support Action</h4>
-<form action="<%= create_support_action_url(@company.url_name)%>" method="post">
-	Description: <input type="text" name="support_action[description]" /><br />
-	Action Type: <input type="radio" name="support_action[action_type]" value="<%= SupportAction::Actions::TEXT %>"> Text 
-	<input type="radio" name="support_action[action_type]" value="<%= SupportAction::Actions::OPTIONS %>"> Options 
-	<input type="radio" name="support_action[action_type]" value="<%= SupportAction::Actions::HELP %>"> Help<Br />
-	<input type="submit" value="Create!" />
-</form>
-
-<br />
-
-<h4>Create A Support Option</h4>
-<form action="<%= create_support_option_url(@company.url_name)%>" method="post">
-	Control: <input type="text" name="support_option[control]" /><br />
-	Description: <input type="text" name="support_option[description]" /><br />
-	Parent Support Action ID: <input type="text" name="support_option[parent_support_action_id]" /><br />
-	Target Support Action ID: <input type="text" name="support_option[target_support_action_id]" /><br />
-	<input type="submit" value="Create!" />
-</form>
-
+<div class="title" style="margin-bottom: 5px">Create A Support Option</div>
+<div class="formWrapper" style="height: 120px;">
+	<form action="<%= create_support_option_url(@company.url_name)%>" method="post">
+		<div class="label">Control</div><div class="field"><input type="text" name="support_option[control]" /></div>
+		<div class="label">Description</div><div class="field"><input type="text" name="support_option[description]" /></div>
+		<div class="label">Parent Support Action ID</div><div class="field"><input type="text" name="support_option[parent_support_action_id]" /></div>
+		<div class="label">Target Support Action ID</div><div class="field"><input type="text" name="support_option[target_support_action_id]" /></div>
+		<div class="submitWrapper"><input type="submit" value="Create!" /></div>
+	</form>
+</div>
 
 
 <br /><br />
