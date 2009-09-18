@@ -26,8 +26,8 @@ config.action_controller.perform_caching             = true
 config.action_mailer.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :address  => "localhost",
+  :address  => "supportable.heroku.com",
   :port  => 25,
-  :domain => `hostname`.chomp
+  :domain => "supportable.heroku.com"
 }
 
