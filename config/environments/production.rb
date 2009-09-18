@@ -31,20 +31,3 @@ ActionMailer::Base.smtp_settings = {
   :domain => `hostname`.chomp
 }
 
-
-require 'memcache'
-
-memcache_options = {
-  :c_threshold => 10_000,
-  :compression => true,
-  :debug => false,
-  :namespace => "supportable-#{RAILS_ENV}",
-  :readonly => false,
-  :urlencode => false
-}
-
-main_cache_options = memcache_options.merge({:namespace => "supportable-#{RAILS_ENV}"})
-config.cache_store = :mem_cache_store, 'localhost:11211', main_cache_options
-
-CACHE = MemCache.new main_cache_options
-CACHE.servers = 'localhost:11211'

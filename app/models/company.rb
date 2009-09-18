@@ -31,18 +31,24 @@ class Company < ActiveRecord::Base
   end
   
   def update_counts
-    CACHE.get(self.counts_cache_key)
+    #CACHE.get(self.counts_cache_key)
+    #counts = {
+    #  :self_help => self.customer_visits.self_help.count,
+    #  :need_help => self.customer_visits.need_help.count,
+    #  :help_arrived => self.customer_visits.help_arrived.count,
+    #  :problem_solved => self.customer_visits.problem_solved.count 
+    #}
+    #CACHE.set(self.counts_cache_key,counts)
+  end
+  
+  def counts
+    #CACHE.get(self.counts_cache_key) || empty_counts
     counts = {
       :self_help => self.customer_visits.self_help.count,
       :need_help => self.customer_visits.need_help.count,
       :help_arrived => self.customer_visits.help_arrived.count,
       :problem_solved => self.customer_visits.problem_solved.count 
     }
-    CACHE.set(self.counts_cache_key,counts)
-  end
-  
-  def counts
-    CACHE.get(self.counts_cache_key) || empty_counts
   end
   
   def empty_counts 
