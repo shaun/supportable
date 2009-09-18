@@ -34,8 +34,6 @@ ActionMailer::Base.smtp_settings = {
 
 require 'memcache'
 
-config.action_controller.session_store = :mem_cache_store
-
 memcache_options = {
   :c_threshold => 10_000,
   :compression => true,
@@ -48,11 +46,5 @@ memcache_options = {
 main_cache_options = memcache_options.merge({:namespace => "supportable-#{RAILS_ENV}"})
 config.cache_store = :mem_cache_store, 'localhost:11211', main_cache_options
 
-SESSION_CACHE = MemCache.new memcache_options
-SESSION_CACHE.servers = 'localhost:11211'
-
 CACHE = MemCache.new main_cache_options
 CACHE.servers = 'localhost:11211'
-
-ActionController::Base.session_options[:expires] = 1800
-ActionController::Base.session_options[:cache] = SESSION_CACHE
