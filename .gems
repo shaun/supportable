@@ -1,3 +1,7 @@
 httparty
 echo
 xmpp4r
+optiflag
+daemons
+multipart-post
+memcache-client
